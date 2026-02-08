@@ -15,15 +15,6 @@ This tool automates the tedious process of opening multiple download pages and c
 
 The script handles the boring stuff: waiting for pages to load, retrying failed downloads, dealing with errors, and keeping track of what worked and what didn't.
 
-## Two Ways to Use It
-
-There are two versions included:
-
-1. **downloader_gui.py** - Graphical interface with buttons and settings (recommended for most people)
-2. **downloader.py** - Command-line version if you prefer running scripts from terminal
-
-Both do the same thing, just different interfaces. The GUI version is easier to configure and lets you change settings without editing code.
-
 ## Getting Started
 
 ### Install Dependencies
@@ -37,12 +28,23 @@ pip install -r requirements.txt
 Then install the browser engines. You only need Chromium unless you want to use Firefox or WebKit:
 
 ```bash
-plaUsing the GUI Version (Easier)
+playwright install chromium
+```
+
+If you want all browsers (Chromium, Firefox, and WebKit):
+
+```bash
+playwright install
+```
+
+That's it for installation.
+
+## Using the GUI
 
 Run this:
 
 ```bash
-python downloader_gui.py
+python d
 ```
 
 A window will open where you can:
@@ -72,33 +74,7 @@ Common patterns you'll see:
 - Multiple classes like `<button class="btn primary">` use `button.btn.primary`
 - If nothing works, try `button:has-text("Download")` to match button text
 
-The selector is just a way to uniquely identify the button. Once you find it, enter it in the GUI or in the script settings
-
-| Website Type | Example Selector |
-|--------------|------------------|
-| Button with class | `button.download-btn` |
-| Link with class | `a.download-link` |
-| Button with ID | `#downloadButton` |
-| Button with text | `button:has-text("Download")` |
-| Data attribute | `[data-action="download"]` |
-| Muling the Command-Line Version
-
-If you prefer editing code and running things from terminal:
-
-1. Open `downloader.py` and update the settings at the top:
-   - `DOWNLOAD_BUTTON_SELECTOR` - The CSS selector for the download button
-   - `MAX_RETRIES` - How many times to retry failed downloads
-   - `DELAY_BETWEEN_DOWNLOADS` - Seconds to wait between downloads
-   - `HEADLESS_MODE` - True to hide browser, False to watch it work
-
-2. Add your URLs to `links.txt` (one per line)
-
-3. Run it:
-   ```bash
-   python downloader.py
-   ```
-
-The script will show you what it's doing in real-time and give you a summary at the end.
+The selector is just a way to uniquely identify the button. Once you find it, enter it in the GUI.
 
 ## What Happens When You Run It
 
@@ -142,19 +118,8 @@ The page is taking too long to load or the download isn't starting. Try increasi
 
 Make sure you ran `playwright install` after installing the package. The browser binaries are separate from the Python package and need to be downloaded.
 
-**Download starts but file doesn't save**
 
-Check that you have write permissions for the downloads folder. Also make sure you have enough disk space for the files you're downloading.
-
-**Using Zen Browser or other custom browsers**
-
-In Project Files
-
-```
-ilovedownload/
-├── downloader_gui.py  # GUI version - recommended
-├── downloader.py      # Command-line version
-├── requirements.txt   # Dependencies to install
+##  requirements.txt   # Dependencies to install
 ├── links.txt          # Put your URLs here
 ├── README.md          # You're reading it
 └── downloads/         # Where files get saved
@@ -163,7 +128,7 @@ ilovedownload/
 ## Notes
 
 This tool is for automating legitimate downloads you're already allowed to make. It just saves you from the tedium of clicking through dozens or hundreds of download pages manually.
-
-Use it responsibly. Don't hammer servers with too many requests. The built-in delays exist for a reason.
-
-If a website has an API or bulk download option, use that instead. This is more of a last resort when you need to automate browser-based downloads and there's no better way
+Main GUI application
+├── requirements.txt   # Dependencies to install
+├── README.md          # You're reading it
+└── downloads/         # Where files get saved (created automatically)
